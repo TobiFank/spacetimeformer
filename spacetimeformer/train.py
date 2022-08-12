@@ -797,13 +797,14 @@ def main(args):
         gpus=args.gpus,
         callbacks=callbacks,
         logger=logger if args.wandb else None,
-        accelerator="dp",
+        accelerator="cuda",
         gradient_clip_val=args.grad_clip_norm,
         gradient_clip_algorithm="norm",
         overfit_batches=20 if args.debug else 0,
         accumulate_grad_batches=args.accumulate,
         sync_batchnorm=True,
         limit_val_batches=args.limit_val_batches,
+        max_epochs=2,
         **val_control,
     )
 
